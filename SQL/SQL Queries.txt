@@ -1,0 +1,67 @@
+create database training;
+/**
+It is used to select the database
+**/
+use training;
+create table employee
+(
+id int,
+name varchar(30),
+dept varchar(30),
+salary float,
+age int
+)
+use training;
+insert into employee values(1, 'Pranjal', 'IT', 100000.50, 24);
+insert into employee(id, name, dept) values(2, 'Ravi', 'HR');
+select * from employee;
+
+use training;
+
+select id, name, age from employee;
+select id, name, age, salary, dept from employee;
+insert into employee values(3, 'Ankit', 'Developer', 78000, 26), (4, 'Rahul', 'Tester', 89000, 30),(5, 'Riya', 'HR', 43000, 28);
+select * from employee;
+update employee set salary = 50000, age = 29 where id = 2;
+select * from employee;
+update employee set salary = 89000 where dept = 'HR';
+select * from employee;
+show tables;
+use training;
+create table Product
+(
+id int,
+name varchar(30),
+description varchar(30)
+);
+describe Product;
+
+alter table Product add column (price int, quantity int, supplier_name varchar(30));
+describe Product;
+
+alter table Product drop supplier_name;
+
+alter table Product modify column description varchar(40);
+describe Product;
+
+rename table Product to Product1;
+rename table Product1 to Product;
+drop table Product;
+select id, name , salary, salary+1000 as bonus from employee;
+select id, name , salary, salary/30 as perday_salary from employee;
+select * from employee where dept = 'HR' or dept = 'IT';
+select * from employee where dept != 'HR' and age>25;
+
+select * from employee order by age;
+select * from employee order by age DESC;
+select * from employee where dept = 'HR' order by salary;
+
+select sum(salary) from employee;
+select count(salary) from employee;
+select max(id) from employee;
+select dept from employee group by dept;
+select dept, count(id) from employee group by dept;
+
+select dept, count(id), sum(salary), min(salary), max(salary) from employee group by dept;
+
+select dept, count(salary)from employee group by dept having count(salary) >= 2;
