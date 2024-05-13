@@ -1,0 +1,87 @@
+Assignment 2: Design a database schema for a library system, including tables, fields, and constraints like NOT NULL, UNIQUE, and CHECK. Include primary and foreign keys to establish relationships between tables.
+
+1. Table: Books
+
+Fields:
+- book_id (Primary Key)
+- title
+- author
+- publication_year
+- ISBN (Unique)
+- genre
+
+Constraints:
+- book_id NOT NULL
+- title NOT NULL
+- author NOT NULL
+- publication_year NOT NULL
+- ISBN NOT NULL
+- UNIQUE (ISBN)
+
+2. Table: Members
+
+Fields:
+- member_id (Primary Key)
+- name
+- email
+- address
+- phone_number
+
+Constraints:
+- member_id NOT NULL
+- name NOT NULL
+-email NOT NULL
+- UNIQUE (email)
+
+3. Table: Loans
+
+Fields:
+- loan_id (Primary Key)
+- book_id (Foreign Key referencing Books)
+- member_id (Foreign Key referencing Members)
+- loan_date
+- return_date
+
+Constraints:
+- loan_id NOT NULL
+- book_id NOT NULL
+- member_id NOT NULL
+- loan_date NOT NULL
+- FOREIGN KEY (book_id) REFERENCES Books(book_id)
+- FOREIGN KEY (member_id) REFERENCES Members(member_id)
+
+4. Table: Reservations
+
+Fields:
+- reservation_id (Primary Key)
+- book_id (Foreign Key referencing Books)
+- member_id (Foreign Key referencing Members)
+- reservation_date
+
+Constraints:
+- reservation_id NOT NULL
+- book_id NOT NULL
+- member_id NOT NULL
+- reservation_date NOT NULL
+- FOREIGN KEY (book_id) REFERENCES Books(book_id)
+- FOREIGN KEY (member_id) REFERENCES Members(member_id)
+
+5. Table: Authors
+
+Fields:
+- author_id (Primary Key)
+- name
+
+Constraints:
+- author_id NOT NULL
+- name NOT NULL
+
+6. Table: Genres
+
+Fields:
+- genre_id (Primary Key)
+- genre_name
+
+Constraints:
+- genre_id NOT NULL
+- genre_name NOT NULL

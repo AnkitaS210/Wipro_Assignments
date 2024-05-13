@@ -1,0 +1,36 @@
+Assignment 5: Begin a transaction, perform a series of INSERTs into 'orders', setting a SAVEPOINT after each, rollback to the second SAVEPOINT, and COMMIT the overall transaction.
+
+
+-- BEGIN a transaction
+BEGIN TRANSACTION;
+
+
+-- INSERT the first record into the 'orders' table
+INSERT INTO orders (order_id, product_id, quantity, order_date)
+VALUES (1, 101, 3, '2024-05-13');
+
+
+-- Set SAVEPOINT after the first INSERT
+SAVEPOINT savepoint1;
+
+
+-- INSERT the second record into the 'orders' table
+INSERT INTO orders (order_id, product_id, quantity, order_date)
+VALUES (2, 102, 2, '2024-05-14');
+
+
+-- Set SAVEPOINT after the second INSERT
+SAVEPOINT savepoint2;
+
+
+-- INSERT the third record into the 'orders' table
+INSERT INTO orders (order_id, product_id, quantity, order_date)
+VALUES (3, 103, 1, '2024-05-15');
+
+
+-- Rollback to the second SAVEPOINT
+ROLLBACK TO SAVEPOINT savepoint2;
+
+
+-- COMMIT the overall transaction
+COMMIT;
